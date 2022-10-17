@@ -1,4 +1,38 @@
-import json
+from fastapi import FastAPI
+from pydantic import BaseModel
+
+'''
+run api locally, from inside directory: $ uvicorn app:app --reload
+'''
+
+app = FastAPI()
+
+
+class Data(BaseModel):
+  area: int
+  property-type: str
+  rooms-number: int
+  zip-code: int
+  land-area: int
+  #"garden": bool
+  #"garden-area": int
+  #"equipped-kitchen": bool
+  #"full-address": str
+
+
+class Property(BaseModel):
+  data: Data
+
+
+@app.get("/")
+def root():
+    return {"message":"alive"}
+
+
+@app.post("/predict")
+def predict(property : Property):
+    return {"message" : property}
+
 
 """
 # deserialising json

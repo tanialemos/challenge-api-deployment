@@ -9,7 +9,6 @@ def preprocess(property: Any):
 
     #preprocess property data
 
-    
 
     #return a np.array with features X to the model  
 
