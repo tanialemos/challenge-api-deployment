@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from preprocessing.cleaning_data import Cleaning_data
+from predict.prediction import Prediction
 
 '''
 run api locally, from inside directory: $ uvicorn app:app --reload
@@ -34,9 +35,14 @@ def root():
 
 @app.post("/predict")
 def predict(property : Property):
+    # data cleaning and preprocessing
     property_data = property.dict()
     cleaning_data = Cleaning_data()
-    cleaning_data.preprocess(property_data)
+    cleaned_property_data = cleaning_data.preprocess(property_data)
+
+    # price prediction
+    prediction = Prediction()
+    prediction.predict(cleaned_property_data)
     return {"message" : property}
 
 '''
