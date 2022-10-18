@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
+from preprocessing.cleaning_data import Cleaning_data
 
 '''
 run api locally, from inside directory: $ uvicorn app:app --reload
@@ -7,21 +8,23 @@ run api locally, from inside directory: $ uvicorn app:app --reload
 
 app = FastAPI()
 
-
-class Data(BaseModel):
-  area: int
-  property-type: str
-  rooms-number: int
-  zip-code: int
-  land-area: int
-  #"garden": bool
-  #"garden-area": int
-  #"equipped-kitchen": bool
-  #"full-address": str
-
-
 class Property(BaseModel):
-  data: Data
+  area: int
+  property_type: str
+  rooms_number: int
+  zip_code: int 
+  land_area: int | None = None
+  garden: bool | None = None
+  garden_area: int | None = None
+  equipped_kitchen: bool | None = None
+  full_address: str | None = None
+  swimming_pool: bool | None = None
+  furnished: bool | None = None
+  open_fire: bool | None = None
+  terrace: bool | None = None
+  terrace_area: int | None = None
+  facades_number: int | None = None
+  building_state: str | None = None
 
 
 @app.get("/")
@@ -31,13 +34,10 @@ def root():
 
 @app.post("/predict")
 def predict(property : Property):
+    property_data = property.dict()
+    cleaning_data = Cleaning_data()
+    cleaning_data.preprocess(property_data)
     return {"message" : property}
-
-
-"""
-# deserialising json
-    property = json.loads(api_input)
-"""
 
 '''
 INPUT JSON
