@@ -1,4 +1,3 @@
-import typing
 from typing import Any
 
 property_types: list[str]
@@ -12,16 +11,13 @@ class Cleaning_data:
 
 
     def preprocess(self, property_data: Any) -> Any:   
-        # check mandatory data, return error if not valid
         
+        # check mandatory data, return error if not valid
         error_message = self.validate_property_data(property_data)
         
         if len(error_message) > 0:
             raise RuntimeError(error_message)
-    # expected X:
-    #['type_of_property', 'number_of_bedrooms', 'surface', 'terrace',
-    #       'garden', 'swimming_pool', 'state_of_the_building',
-    #       'postal_code_score']
+
         # drop unnecessary features
         property_data.pop('land_area')
         property_data.pop('garden_area')

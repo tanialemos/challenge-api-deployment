@@ -12,12 +12,6 @@ class Prediction:
             data = pickle.load(file)
         return data
 
-
-    # expected X:
-    #['type_of_property', 'number_of_bedrooms', 'surface', 'terrace',
-    #       'garden', 'swimming_pool', 'state_of_the_building',
-    #       'postal_code_score']
-
     def predict(self, cleaned_property_data: Dict):
 
         ready_property_data = {}
@@ -26,14 +20,10 @@ class Prediction:
         
         print(ready_property_data)
         X = pd.DataFrame.from_dict(ready_property_data)
-        print(X.shape)
-        print(X)
 
         data = self.load_model()
 
         regressor = data['model']
-        #property_type_encoder = data['property_type_encoder']
-        #building_state_encoder = data['building_state_encoder']
 
         prediction = regressor.predict(X)
         if prediction.size != 1:

@@ -14,16 +14,16 @@ class Property(BaseModel):
   property_type: str
   rooms_number: int
   zip_code: int 
-  land_area: int | None = None
-  garden: bool | None = None
-  garden_area: int | None = None
+  land_area: int | None = 0
+  garden: bool | None = False
+  garden_area: int | None = 0
   equipped_kitchen: bool | None = None
   full_address: str | None = None
-  swimming_pool: bool | None = None
-  furnished: bool | None = None
-  open_fire: bool | None = None
-  terrace: bool | None = None
-  terrace_area: int | None = None
+  swimming_pool: bool | None = False
+  furnished: bool | None = False
+  open_fire: bool | None = False
+  terrace: bool | None = False
+  terrace_area: int | None = 0
   facades_number: int | None = None
   building_state: str | None = None
 
@@ -51,4 +51,3 @@ def predict(property : Property):
     }
 
     return {"message" : response}
-
