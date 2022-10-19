@@ -36,7 +36,7 @@ class Prediction:
         #building_state_encoder = data['building_state_encoder']
 
         prediction = regressor.predict(X)
-        print(f'Price prediction is:  {prediction}')
+        if prediction.size != 1:
+            raise RuntimeError("Some error with prediction")
 
-
-        pass
+        return prediction[0]

@@ -35,10 +35,15 @@ class Cleaning_data:
         property_data.pop('property_type') # TODO
         property_data.pop('building_state') # TODO
 
-        # rename dictionnary keys to match model features
-        property_data['surface'] = property_data.pop('area')
-       # property_data['type_of_property'] = property_data.pop('property_type')
+        # rename and reorder dictionnary keys to match model features
+        property_data['type_of_property'] = property_data.pop('property_type')
         property_data['number_of_bedrooms'] = property_data.pop('rooms_number')
+        property_data['surface'] = property_data.pop('area')
+        property_data['terrace'] = property_data.pop('terrace')
+        property_data['garden'] = property_data.pop('garden')
+        property_data['swimming_pool'] = property_data.pop('swimming_pool')
+        
+        
        # property_data['state_of_the_building'] = property_data.pop('building_state')
         #property_data['postal_code_score'] = property_data.pop('zip_code')
 
@@ -47,13 +52,8 @@ class Cleaning_data:
         #property_data['terrace'] = bool(property_data['terrace'])
         #property_data['surface'] = int(property_data['surface'])
         #property_data['number_of_bedrooms'] = int(property_data['number_of_bedrooms'])
-
-        property_data['garden'] = False
-        property_data['swimming_pool'] = False
-        property_data['terrace'] = True
-        property_data['surface'] = 200
-        property_data['number_of_bedrooms'] = 3
         
+
         return property_data  
 
 

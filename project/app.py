@@ -39,11 +39,18 @@ def predict(property : Property):
     property_data = property.dict()
     cleaning_data = Cleaning_data()
     cleaned_property_data = cleaning_data.preprocess(property_data)
-
+    
     # price prediction
     prediction = Prediction()
-    prediction.predict(cleaned_property_data)
-    return {"message" : property}
+    price_prediction = prediction.predict(cleaned_property_data)
+
+    # create price prediction response
+    response = {
+      "prediction": price_prediction,
+      "status_code": 200 # TODO not hard-coded
+    }
+
+    return {"message" : response}
 
 '''
 INPUT JSON
