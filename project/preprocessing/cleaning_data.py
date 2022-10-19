@@ -32,8 +32,6 @@ class Cleaning_data:
         property_data.pop('terrace_area')
         property_data.pop('facades_number')
         property_data.pop('zip_code') # TODO
-        property_data.pop('property_type') # TODO
-        property_data.pop('building_state') # TODO
 
         # rename and reorder dictionnary keys to match model features
         property_data['type_of_property'] = property_data.pop('property_type')
@@ -42,17 +40,13 @@ class Cleaning_data:
         property_data['terrace'] = property_data.pop('terrace')
         property_data['garden'] = property_data.pop('garden')
         property_data['swimming_pool'] = property_data.pop('swimming_pool')
-        
-        
-       # property_data['state_of_the_building'] = property_data.pop('building_state')
+        property_data['state_of_the_building'] = property_data.pop('building_state')
         #property_data['postal_code_score'] = property_data.pop('zip_code')
 
-        #property_data['garden'] = bool(property_data['garden'])
-        #property_data['swimming_pool'] = bool(property_data['swimming_pool'])
-        #property_data['terrace'] = bool(property_data['terrace'])
-        #property_data['surface'] = int(property_data['surface'])
-        #property_data['number_of_bedrooms'] = int(property_data['number_of_bedrooms'])
-        
+        # translate categories into numeric values
+        property_data["type_of_property"] = 1 if property_data["type_of_property"] == "HOUSE" else 0
+        property_data["state_of_the_building"] = 0 if property_data["state_of_the_building"] == "TO RENOVATE" or property_data["state_of_the_building"] == "TO RESTORE" else 1
+
 
         return property_data  
 

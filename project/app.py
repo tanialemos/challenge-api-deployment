@@ -39,7 +39,7 @@ def predict(property : Property):
     property_data = property.dict()
     cleaning_data = Cleaning_data()
     cleaned_property_data = cleaning_data.preprocess(property_data)
-    
+
     # price prediction
     prediction = Prediction()
     price_prediction = prediction.predict(cleaned_property_data)
@@ -52,35 +52,3 @@ def predict(property : Property):
 
     return {"message" : response}
 
-'''
-INPUT JSON
-{
-  "data": {
-    "area": int,
-    "property-type": "APARTMENT" | "HOUSE" | "OTHERS",
-    "rooms-number": int,
-    "zip-code": int,
-    "land-area": Optional[int],
-    "garden": Optional[bool],
-    "garden-area": Optional[int],
-    "equipped-kitchen": Optional[bool],
-    "full-address": Optional[str],
-    "swimming-pool": Optional[bool],
-    "furnished": Optional[bool],
-    "open-fire": Optional[bool],
-    "terrace": Optional[bool],
-    "terrace-area": Optional[int],
-    "facades-number": Optional[int],
-    "building-state": Optional[
-      "NEW" | "GOOD" | "TO RENOVATE" | "JUST RENOVATED" | "TO REBUILD"
-    ]
-  }
-}
-
-OUTPUT JSON
-{
-  "prediction": Optional[float],
-  "status_code": Optional[int]
-}
-
-'''
