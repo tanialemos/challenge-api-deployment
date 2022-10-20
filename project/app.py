@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from preprocessing.cleaning_data import Cleaning_data
 from predict.prediction import Prediction
+import uvicorn
 
 '''
 run api locally, from inside directory: $ uvicorn app:app --reload
@@ -51,3 +52,7 @@ def predict(property : Property):
     }
 
     return {"message" : response}
+
+
+if __name__ == "__main__":
+  uvicorn.run(app,host="127.0.0.1", port="8000")
