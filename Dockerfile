@@ -24,3 +24,5 @@ RUN pip install -r requirements.txt
 # Set host to 0.0.0.0 to make it run on the container network
 # Set port to the env variable PORT to make it easy to choose the port on the server
 CMD uvicorn app:app --host 0.0.0.0 --port $PORT
+
+# to build an image from inside the directory $ docker build . -t my_api_name
