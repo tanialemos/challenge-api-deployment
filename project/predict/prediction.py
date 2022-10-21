@@ -5,13 +5,10 @@ import pandas as pd
 class Prediction:
 
     def __init__(self) -> None:
-        pass
-
-    def load_model(self):
-        with open("../project/model/saved_model.pkl", 'rb') as file:
+        with open("model/saved_model.pkl", 'rb') as file:
             data = pickle.load(file)
-        return data
-
+            self.model = data['model']
+    
     def predict(self, cleaned_property_data: Dict):
 
         ready_property_data = {}
@@ -21,11 +18,7 @@ class Prediction:
         print(ready_property_data)
         X = pd.DataFrame.from_dict(ready_property_data)
 
-        data = self.load_model()
-
-        regressor = data['model']
-
-        prediction = regressor.predict(X)
+        prediction = self.model.predict(X)
         if prediction.size != 1:
             raise RuntimeError("Some error with prediction")
 
