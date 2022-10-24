@@ -2,12 +2,16 @@ from fastapi import FastAPI, Body
 from pydantic import BaseModel
 from preprocessing.cleaning_data import Cleaning_data
 from predict.prediction import Prediction
+#import os
 #import uvicorn
 
 '''
 run api locally, from inside directory: $ uvicorn app:app --reload
 '''
 
+# Set port to the env variable PORT to make it easy to choose the port on the server
+# If the Port env variable is not set, use port 8000
+#PORT = os.environ.get("PORT", 8000)
 app = FastAPI()
 prediction = Prediction()
 cleaning_data = Cleaning_data()
